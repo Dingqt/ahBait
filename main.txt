@@ -38,11 +38,18 @@ async def push_bait_to_gitlib_repositories(url: str, username: str, password: st
         shutil.copy(bait_file, path)
 
     # “git add .” and “git commit”
-    await process_exec("git", "add", ".", cwd=path)
-    await process_exec("git", "commit", "-m", '""', cwd=path)
+    code = await process_exec("git", "add", ".", cwd=path)
+    if 0 != code:
+        raise Exception("file add file")
+
+    code = await process_exec("git", "commit", "-m", '""', cwd=path)
+    if 0 != code:
+        raise Exception("file commit failed")
 
     # update remote repositories
-    await process_exec("git", "push", "-u", "origin", "master", cwd=path)
+    code = await process_exec("git", "push", "-u", "origin", "master", cwd=path)
+    if 0 != code:
+        raise Exception("git push failed")
 
     # clean
     shutil.rmtree(path)
