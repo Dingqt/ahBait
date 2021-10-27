@@ -1,0 +1,95 @@
+Git常用命令
+
+
+###创建仓库
+git init
+	git init		#使用当前目录为Git仓库
+	git init <newrepo>			#只用指定的目录作为Git仓库
+
+git clone
+	git clone <repo>	#克隆仓库
+	git clone <repo> <directory>		#克隆项目至指定的目录
+
+
+###配置
+git config
+	git config --list		#显示当前的git配置信息
+	git config -e			#针对当前仓库
+	git config -e --global	#针对系统上所有仓库
+
+###Git分支管理
+branch			#创建分支
+	git branch 					#列出分支
+
+	git branch (branchname)		#创建分支
+
+	git branch -d (branchname)	#删除分支
+
+checkout		#切换分支
+	git checkout (branchname)	#切换到branchname分支
+
+merge			#合并分支
+	git merge (newbranch)	#合并newbranch上的改动
+
+
+###提交与修改
+git add		#添加文件到仓库
+
+git status	#查看仓库当前的状态，显式有变更的文件
+
+git diff	#比较文件的不同，即暂存区和工作区的差异
+
+git commit	#提交暂存区到本地仓库
+
+git reset	#回退版本
+
+git rm		#删除工作区文件
+
+git mv		#移动或重命名工作区文件
+
+
+###提交日志
+git log
+	git log		#查看历史提交记录
+
+	git log --oneline		#查看历史记录的简洁版本
+
+	git log --graph			#开启拓扑图
+
+	git log --reverse		#逆向显式所有数据
+
+	git log --author=linus	#查看指定用户提交的日志
+
+	git log --before={} --after={}		#指定时间
+
+git blame
+	git blame (file)	#查看文件的修改记录
+
+
+Git标签
+git tag
+	git tag 			#查看tag列表
+
+	git tag -a Vx.x.x		#给最新一次提交打上tag
+
+	git tag -a Vx.x.x (commit_verion)	#给commit_version追加标签
+
+
+###远程操作
+git remote
+	git remote add [shortname] [url]	#添加远程库
+
+	git remote -v		#查看远程仓库列表
+
+	git remote rm [alias]	#删除远程仓库
+
+git fetch
+	get fetch origin	#从远程仓库下载新分支与数据
+
+git merge
+	git merge origin/master 	#从远端仓库提取数据并尝试合并到当前分支
+
+git push
+	git push [alias] [branch]	#将[branch]分支推送成为[alias]远程仓库上的[branch]分支
+
+git pull	#拉去远程仓库代码
